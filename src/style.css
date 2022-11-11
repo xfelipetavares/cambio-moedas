@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
-  background-image: url('./src/assets/bg.svg');
+  background-image: url('./assets/bg.svg');
   font-family: Fira Code;
 }
 header {

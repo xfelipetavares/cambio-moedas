@@ -24,7 +24,7 @@ const converter = (referencie) => {
       headerCoin.classList.add('header');
 
       const coinImg = document.createElement('img');
-      coinImg.src = "./src/assets/coin.svg"
+      coinImg.src = "./assets/coin.svg"
       headerCoin.appendChild(coinImg);
 
       const coinNameH4 = document.createElement('h4');
