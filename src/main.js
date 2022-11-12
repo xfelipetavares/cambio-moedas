@@ -1,73 +1,76 @@
+/* eslint-disable max-len */
 import './style.css';
-
 import Swal from 'sweetalert2';
 
 const referencieCoin = document.querySelector('input');
 const searchBtn = document.querySelector('button');
+const titleDisplay = document.getElementById('title-display');
 
 const converter = (referencie) => {
-  cleanDisplay();
-  const general_URL = `https://api.exchangerate.host/latest?base=${referencie}`;
-  fetch(general_URL).then((response) => response.json()).then((data) => {
-    if (data.base !== referencie) {
-      cleanDisplay();
-      throw new Error('Moeda inválida');
-    }
-    const entries = Object.entries(data.rates);
-    entries.forEach((entrie) => {
-      const [coinName, value] = entrie
+  const generalURL = `https://api.exchangerate.host/latest?base=${referencie}`;
 
-      const contentCoin = document.createElement('div');
-      contentCoin.classList.add('content-coin');
+  fetch(generalURL)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.base !== referencie.toUpperCase()) {
+          cleanDisplay();
+          throw new Error('Moeda inválida');
+        }
+        const entries = Object.entries(data.rates);
+        entries.forEach((entrie) => {
+          const [coinName, value] = entrie;
 
-      const headerCoin = document.createElement('div')
-      headerCoin.classList.add('header');
+          const contentCoin = document.createElement('div');
+          contentCoin.classList.add('content-coin');
 
-      const coinImg = document.createElement('img');
-      coinImg.src = "./assets/coin.svg"
-      headerCoin.appendChild(coinImg);
+          const headerCoin = document.createElement('div');
+          headerCoin.classList.add('header');
 
-      const coinNameH4 = document.createElement('h4');
-      coinNameH4.classList.add('coin-name');
-      coinNameH4.innerText = coinName;
-      headerCoin.appendChild(coinNameH4);
+          const coinImg = document.createElement('img');
+          coinImg.src = './src/assets/coin.svg';
+          headerCoin.appendChild(coinImg);
 
-      const coinValueH4 = document.createElement('h4');
-      coinValueH4.classList.add('coin-value');
-      coinValueH4.innerText = value.toFixed(2);
-      contentCoin.appendChild(headerCoin);
-      contentCoin.appendChild(coinValueH4);
+          const coinNameH4 = document.createElement('h4');
+          coinNameH4.classList.add('coin-name');
+          coinNameH4.innerText = coinName;
+          headerCoin.appendChild(coinNameH4);
 
-      const display = document.querySelector('.display');
-      display.appendChild(contentCoin);
-    })
-    }).catch((error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Opsss...',
-        text: error.message
+          const coinValueH4 = document.createElement('h4');
+          coinValueH4.classList.add('coin-value');
+          coinValueH4.innerText = value.toFixed(2);
+          contentCoin.appendChild(headerCoin);
+          contentCoin.appendChild(coinValueH4);
+
+          const display = document.querySelector('.display');
+          display.appendChild(contentCoin);
+        });
       })
-    });
-}
+      .catch((error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Opsss...',
+          text: error.message,
+        });
+      });
+};
 
 const cleanDisplay = () => {
   const display = document.querySelector('.display');
   display.innerHTML = '';
-  titleDisplay.innerHTML = '';
-}
-
+  titleDisplay.innerHTML = 'Erroooou!';
+};
 
 searchBtn.addEventListener('click', (event) => {
   event.preventDefault();
+  cleanDisplay();
   if (!referencieCoin.value) {
     cleanDisplay();
     return Swal.fire({
       icon: 'error',
       title: 'Opsss...',
-      text: 'Você precisa digitar uma moeda!'
-    })
+      text: 'Você precisa digitar uma moeda!',
+    });
   }
-  titleDisplay.innerHTML = `Valores referentes a 1 ${referencieCoin.value}`
+  titleDisplay.innerHTML = `Valores referentes a 1 ${referencieCoin.value.toUpperCase()}`;
   converter(referencieCoin.value);
-  })
-
+});

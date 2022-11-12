@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Code:300,regular,500,600,700);
+
 * {
   padding: 0;
   margin: 0;
@@ -6,6 +7,9 @@
 }
 :root {
   font-size: 62.5%;
+}
+.wrapper {
+  height: 30rem;
 }
 body {
   width: 100%;
@@ -19,11 +23,11 @@ body {
 }
 header {
   width: fit-content;
-  /* height: 17rem; */
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   margin-top: 6.3rem;
+  width: 100%;
 }
 header button {
   width: 17.1rem;
@@ -36,10 +40,11 @@ header button {
 }
 h1 {
   display: flex;
+  justify-content: flex-start;
   font-size: 6rem;
   color: white;
 }
-h1 .cambio {
+h1 span {
   color: #96eb95;
 }
 header form {
@@ -62,16 +67,19 @@ header label input {
   border-radius: 10px;
   border: none;
   background-color: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-size: 2.4rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 header label input::placeholder {
   color: rgb(173, 173, 173);
-  padding-left: 1rem;
 }
 main {
   margin-top: 5.7rem;
   margin-bottom: 10.9rem;
   width: 90rem;
-  height: fit-content;
+  height: 43rem;
   background-color: rgba(255, 255, 255, 0.06);
   border-radius: 15px;
   display: flex;
@@ -79,15 +87,16 @@ main {
   align-items: center;
   gap: 2.8rem;
   padding: 2.4rem;
+  padding-bottom: 1rem;
 }
 main h3 {
   color: white;
   font-size: 2.4rem;
 }
 main .display .header {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 .content-coin {
   background: rgba(0, 0, 0, 0.2);
@@ -101,18 +110,83 @@ main .display .header {
   color: white;
 }
 .content-coin img {
-    width: 1.4rem;
-    height: 1.4rem;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 .coin-value {
-    color: rgba(255, 231, 19, 1);
+  color: rgba(255, 231, 19, 1);
 }
 .coin-name {
-    font-size: 1.6rem;
-    line-height: 2rem;
+  font-size: 1.6rem;
+  line-height: 2rem;
 }
 main .display {
-    display: grid;
-    gap: 2.1rem;
-    grid-template-columns: repeat(5, 1fr);
+  display: grid;
+  height: 48rem;
+  gap: 2.1rem;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: scroll;
+}
+.display::-webkit-scrollbar {
+  display: none;
+  opacity: 0;
+}
+
+@media screen and (max-width: 970px) {
+  .wrapper {
+    width: 100%;
+    padding: 1rem;
+  }
+  h1 {
+    width: 100%;
+    font-size: 5rem;
+  }
+  main {
+    width: 100%;
+  }
+  main .display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .wrapper {
+    width: 100%;
+  }
+  h1 {
+    width: 100%;
+    flex-direction: column;
+  }
+  header form {
+    justify-content: flex-start;
+  }
+  main {
+    width: 100%;
+  }
+  main .display {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 390px) {
+  header {
+    margin-top: 0;
+  }
+  header button {
+    width: 49vw;
+  }
+  header label input {
+    width: 49vw;
+  }
+  main .display {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .display {
+    width: 100%;
+  }
+  .content-coin {
+    width: 100%;
+  }
+  main h3 {
+    font-size: 1.5rem;
+  }
 }

@@ -9,22 +9,23 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Casa de<div class="cambio">&nbsp;Câmbio</div></h1>
+        <h1>Casa de&nbsp;<span>Câmbio</span></h1>
         <form>
           <label>
             Digite a moeda:
-            <input type="text" placeholder="USD"/>
+            <input type="text" placeholder="USD" />
           </label>
           <button>Pesquisar</button>
         </form>
       </header>
       <main>
-        <h3 id="titleDisplay"></h3>
-        <div class="display">
-        </div>
+        <h3 id="title-display">Nenhuma moeda definida</h3>
+        <div class="display"></div>
       </main>
     </div>
 
     <script src="src/main.js" type="module"></script>
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   </body>
 </html>
