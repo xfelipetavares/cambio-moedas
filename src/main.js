@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import './style.css';
 import Swal from 'sweetalert2';
+import coinimage from './assets/coin.svg'
 
 const referencieCoin = document.querySelector('input');
 const searchBtn = document.querySelector('button');
@@ -27,7 +28,7 @@ const converter = (referencie) => {
           headerCoin.classList.add('header');
 
           const coinImg = document.createElement('img');
-          coinImg.src = './src/assets/coin.svg';
+          coinImg.src = coinimage;
           headerCoin.appendChild(coinImg);
 
           const coinNameH4 = document.createElement('h4');
